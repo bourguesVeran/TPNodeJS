@@ -1,0 +1,31 @@
+const users = require('./db');
+
+const getUsers = function() {
+    return users;
+}
+
+const getUserByFirstname = function(firstname) {
+    return users.find(u => firstname == u.firstname);
+}
+
+const createUser = function(data) {
+    return users.push(data);
+}
+
+const modifyUser = function(id, data) {
+    if (users.find(u => id == u.id)) {
+        u = data;        
+    }
+}
+
+const deleteUser = function(id) {
+    users.splice(id, 1);
+}
+
+module.exports = {
+    getUsers,
+    getUserByFirstname,
+    createUser,
+    modifyUser,
+    deleteUser,
+}
