@@ -4,11 +4,23 @@ const getUsers = function() {
     return users;
 }
 
+const getUserByID = function(id) {
+    return users.find(u => id == u.id);
+}
+
 const getUserByFirstname = function(firstname) {
     return users.find(u => firstname == u.firstname);
 }
 
 const createUser = function(data) {
+
+    const crypto = require('crypto');
+    let hash = crypto.createHash('md5').update(data.password).digest("hex");
+
+    const { v4: uuidv4 } = require('uuid');
+
+    data.password = hash;
+    data.id = uuidv4(); 
     return users.push(data);
 }
 
@@ -24,6 +36,7 @@ const deleteUser = function(id) {
 
 module.exports = {
     getUsers,
+    getUserByID,
     getUserByFirstname,
     createUser,
     modifyUser,
