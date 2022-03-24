@@ -1,0 +1,20 @@
+{
+  "name": "test-express-ws",
+  "version": "1.0.0",
+  "description": "Suppa description",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "devstart": "nodemon index.js"
+  },
+  "author": "Moi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "luxon": "^2.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
