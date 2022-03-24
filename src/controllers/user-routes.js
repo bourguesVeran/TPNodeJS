@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const userRepository = require('../models/user-repository');
-const md5 = require('md5');
 
 router.get('/', (req, res) => {
   res.send(userRepository.getUsers())
@@ -18,16 +17,20 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const user = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    password: md5(req.body.password),
-  };
-
-  userRepository.createUser(user);
+  userRepository.createUser(req.body);
   res.status(201).end();
 });
 
-exports.initializeRoutes = function() {
+router.put('/:id', (req, res) => {
+  userRepository.updateUser(req.params.id, req.body);
+  res.status(204).end();
+});
+
+router.delete('/:id', (req, res) => {
+  userRepository.deleteUser(req.params.id);
+  res.status(204).end();
+});
+
+exports.initializeRoutes = () => {
   return router;
 }

@@ -14,8 +14,8 @@ class WebServer {
     initializeErrorMiddlwares(this.app);
   }
 
-  async start() {
-    await this.app.listen(this.port, () => {
+  start() {
+    this.app.listen(this.port, () => {
       console.log(`Example app listening on port ${this.port}`);
     });
   }

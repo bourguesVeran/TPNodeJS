@@ -11,10 +11,15 @@ const initLoggerMiddlware = (app) => {
     const begin = new DateTime(new Date());
 
     res.on('finish', () => {
+      const requestDate = begin.toString();
+      const remoteIP = `IP: ${req.connection.remoteAddress}`;
+      const httpInfo = `${req.method} ${req.baseUrl || req.path}`;
+
       const end = new DateTime(new Date());
       const requestDurationMs = end.diff(begin).toMillis();
+      const requestDuration = `Duration: ${requestDurationMs}ms`;
 
-      console.log(`[${begin.toString()}] - [${req.method} ${req.baseUrl || req.path}] - [Duration: ${requestDurationMs}ms]`);
+      console.log(`[${requestDate}] - [${remoteIP}] - [${httpInfo}] - [${requestDuration}]`);
     })
     next();
   });
