@@ -6,8 +6,8 @@ exports.getUsers = () => {
   return users;
 };
 
-exports.getUserById = (id) => {
-  const foundUser = users.find((user) => id == user.id);
+exports.getUserByFirstName = (firstName) => {
+  const foundUser = users.find((user) => user.firstName == firstName);
 
   if (!foundUser) {
     throw new Error('User not found');

@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
   res.send(userRepository.getUsers())
 });
 
-router.get('/:id', (req, res) => {
-  const foundUser = userRepository.getUserById(req.params.id);
+router.get('/:firstName', (req, res) => {
+  const foundUser = userRepository.getUserByFirstName(req.params.firstName);
 
   if (!foundUser) {
     throw new Error('User not found');
